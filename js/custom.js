@@ -20,12 +20,11 @@ var $download = $('#download');
       $('#download').attr('href', croppedImageUrl);
       $('#cropped-image').show();
       $('#download').show();
-      canvas.cropper('destroy');
-      $('#demoImage').show();
+      $('.span-div').hide();
     });
     $('#btnCancel').unbind("click").click(function() {
      canvas.cropper('destroy');
-     $('#demoImage').show();
+     document.getElementById("inputImage").value = "";
    });
     $('#btnReset').unbind("click").click(function() {
      canvas.cropper('reset');
@@ -48,7 +47,7 @@ var $download = $('#download');
             context.canvas.width  = img.width;
             context.drawImage(img, 0, 0);
             var cropper = canvas.cropper({
-              aspectRatio: 4 / 3
+              // aspectRatio: 4 / 3
             });
           };
           img.src = evt.target.result;

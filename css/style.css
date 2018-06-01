@@ -15,6 +15,7 @@ body {
 #cropped-image
 {
   width: 100%;
+  height: 240px;
 }
 .chooseimage{
   width: 40%;
@@ -22,11 +23,13 @@ body {
   border: 2px solid #286090;
   padding: 10px;
   display: inline-block;
+  background: url('../img/crop-image@2x.png');
+  background-size: 456px;
 }
 .cropImage
 {
   width: 30%;
-  height: 345px;
+  height: 342px;
   border: 2px solid green;
   padding: 10px;
   display: inline-block;
@@ -41,10 +44,6 @@ body {
 {
   margin-bottom: 15px;
 }
-#demoImage
-{
-  width: 100%;
-}
 #cropped-image, #canvas
 {
   display: none;
@@ -54,6 +53,16 @@ body {
   margin-top: 40px;
   float: right;
   display: none;
+}
+.cropImage span
+{
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  top: 45%;
+  color: #00000073;
+  transform: translateY(40%);
+  margin-left: 5%;
 }
 @media screen and (max-width: 767px)
 {
