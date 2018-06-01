@@ -1,0 +1,95 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  background-color: #80808063;
+}
+.container
+{
+  display: flex;
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
+}
+#cropped-image
+{
+  width: 100%;
+}
+.chooseimage{
+  width: 40%;
+  height: 345px;
+  border: 2px solid #286090;
+  padding: 10px;
+  display: inline-block;
+}
+.cropImage
+{
+  width: 30%;
+  height: 345px;
+  border: 2px solid green;
+  padding: 10px;
+  display: inline-block;
+  margin-left: 5px;
+}
+.image-holder
+{
+  width: 28%;
+  display: inline-block;
+}
+.btn-upload
+{
+  margin-bottom: 15px;
+}
+#demoImage
+{
+  width: 100%;
+}
+#cropped-image, #canvas
+{
+  display: none;
+}
+#download
+{
+  margin-top: 40px;
+  float: right;
+  display: none;
+}
+@media screen and (max-width: 767px)
+{
+  .chooseimage{
+    margin-top:20px;
+    height: 290px;
+    width: 100%;
+    display: block;
+  }
+  .cropImage
+  {
+    margin-top:20px;
+    height: 290px;
+    width: 100%;
+    display: block;
+  }
+  .image-holder
+  {
+    margin-top:20px;
+    width: 100%;
+    display: inline-block;
+  }
+  .cropBtnGroup
+  {
+    display: inline-block;
+  }
+  .container
+  {
+    display: block;
+    position: unset;
+    top: unset;
+    transform: unset;
+    margin-top: 20px;
+  }
+  .cropImage
+  {
+    margin-left: 0;
+  }
+}

@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,104 +15,7 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.css">
-
-  <style type="text/css">
-  html {
-  height: 100%;
-}
-body {
-  min-height: 100%;
-  background-color: #80808063;
-}
-  .container
-  {
-    display: flex;
-    position: relative;
-    top: 50%;
-    transform: translateY(50%);
-  }
-  #cropped-image
-  {
-    width: 100%;
-  }
-    .chooseimage{
-      width: 40%;
-      height: 345px;
-      border: 2px solid #286090;
-      padding: 10px;
-      display: inline-block;
-    }
-    .cropImage
-    {
-      width: 30%;
-      height: 345px;
-      border: 2px solid green;
-      padding: 10px;
-      display: inline-block;
-      margin-left: 5px;
-    }
-    .image-holder
-    {
-      width: 28%;
-      display: inline-block;
-    }
-    .btn-upload
-    {
-      margin-bottom: 15px;
-    }
-    #demoImage
-    {
-      width: 100%;
-    }
-    #cropped-image, #canvas
-    {
-      display: none;
-    }
-    #download
-  {
-    margin-top: 40px;
-    float: right;
-    display: none;
-  }
-    @media screen and (max-width: 767px)
-    {
-      .chooseimage{
-        margin-top:20px;
-        height: 290px;
-      width: 100%;
-      display: block;
-    }
-    .cropImage
-    {
-      margin-top:20px;
-      height: 290px;
-      width: 100%;
-      display: block;
-    }
-    .image-holder
-    {
-      margin-top:20px;
-      width: 100%;
-      display: inline-block;
-    }
-    .cropBtnGroup
-    {
-      display: inline-block;
-    }
-    .container
-  {
-    display: block;
-    position: unset;
-    top: unset;
-    transform: unset;
-    margin-top: 20px;
-  }
-  .cropImage
-  {
-    margin-left: 0;
-    }
-  }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -124,7 +26,9 @@ body {
 
   <!-- Add your site or application content here -->
   <div class="container">
+
     <div class="btn-group image-holder">
+
       <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
         <input type="file" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
       </label>
@@ -137,109 +41,36 @@ body {
 
     </div>
 
-
     <div class="chooseimage">
-       <img id="demoImage" src="img/picture.jpg" alt="Picture">
+      <img id="demoImage" src="img/picture.jpg" alt="Picture">
       <canvas id="canvas">
-        Your browser does not support the HTML5 canvas element.
+      Your browser does not support the HTML5 canvas element.
       </canvas>
     </div>
 
     <div class="cropImage">
-     <img src="test.png" id="cropped-image">
-     <a class="btn btn-primary" id="download" href="test.png" download="cropped.jpg">Download</a>
-   </div>
- </div>      
+      <img src="test.png" id="cropped-image">
+      <a class="btn btn-primary" id="download" href="test.png" download="cropped.jpg">Download</a>
+    </div>
+</div>
 
+<script src="js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+<!-- cropper js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js"></script>
+<script src="js/custom.js"></script>
 
-
-  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js"></script> 
-<script type="text/javascript">
-  var canvas  = $("#canvas"),
-  context = canvas.get(0).getContext("2d");
-  var $image = $('#image');
-  var $download = $('#download');
-
-  //for images choose
-  $('#inputImage').on( 'change', function(){
-    processUploadedFile(this.files);
-    $('#demoImage').hide();
-  });
-
-  function processUploadedFile(fileData)
-  {
-    ChooseImage(fileData,canvas,context);
-
-    $('#btnCrop').unbind("click").click(function() {
-      var croppedImageData = canvas.cropper('getCroppedCanvas');
-       var croppedImageUrl = croppedImageData.toDataURL('image/png');
-       $('#cropped-image').attr('src', croppedImageUrl);
-       $('#download').attr('href', croppedImageUrl);
-       $('#cropped-image').show();
-       $('#download').show();
-        canvas.cropper('destroy');
-     $('#demoImage').show();
-    });
-    $('#btnCancel').unbind("click").click(function() {
-       canvas.cropper('destroy');
-     $('#demoImage').show();
-    });
-     $('#btnReset').unbind("click").click(function() {
-       canvas.cropper('reset');
-    });
-  }
-
-  function ChooseImage(fileData,canvas,context)
-  {
-  
-    if (fileData && fileData[0]) {
-      if ( fileData[0].type.match(/^image\//) ) {
-
-        var reader = new FileReader();
-        reader.onload = function(evt) {
-          canvas.cropper('destroy');
-          $('.cropper-canvas img').attr('src', evt.target.result);
-          var img = new Image();
-          img.onload = function() {
-            context.canvas.height = img.height;
-            context.canvas.width  = img.width;
-            context.drawImage(img, 0, 0);
-            var cropper = canvas.cropper({
-              aspectRatio: 4 / 3
-            });
-          };
-          img.src = evt.target.result;
-        };
-        reader.readAsDataURL(fileData[0]);
-      }
-      else {
-        alert("Invalid file type! Please select an image file.");
-      }
-    }
-    else {
-      alert('No file(s) selected.');
-    }
-  }
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
+  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
 </script>
-
-
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
 
 </body>
-
 </html>
